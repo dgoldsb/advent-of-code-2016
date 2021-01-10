@@ -1,4 +1,4 @@
-use aoc::parse_lines;
+use aoc::{parse_ints, parse_lines};
 use regex::Regex;
 use std::str::FromStr;
 
@@ -40,7 +40,40 @@ fn part_a(inputs: &Vec<String>) -> usize {
         .count()
 }
 
+fn part_b(inputs: &Vec<isize>) -> usize {
+    let mut buffer = Vec::new();
+    let mut shapes = Vec::new();
+
+    for int in inputs {
+        buffer.push(*int);
+        if buffer.len() == 9 {
+            shapes.push(Shape {
+                a: buffer[0],
+                b: buffer[3],
+                c: buffer[6],
+            });
+            shapes.push(Shape {
+                a: buffer[1],
+                b: buffer[4],
+                c: buffer[7],
+            });
+            shapes.push(Shape {
+                a: buffer[2],
+                b: buffer[5],
+                c: buffer[8],
+            });
+
+            buffer.clear();
+        }
+    }
+
+    shapes.iter().filter(|&s| s.is_triangle()).count()
+}
+
 fn main() {
     let inputs = parse_lines();
     println!("A: {}", part_a(&inputs));
+
+    let inputs = parse_ints();
+    println!("B: {}", part_b(&inputs));
 }
