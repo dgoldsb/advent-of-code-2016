@@ -1,7 +1,7 @@
 use regex::Regex;
 use std::fs;
 
-fn read_file() -> String {
+pub fn read_file() -> String {
     fs::read_to_string("input.txt").expect("Something went wrong reading the file")
 }
 
