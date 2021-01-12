@@ -1,4 +1,5 @@
 use aoc::parse_lines;
+use std::collections::HashSet;
 
 const EMPTY: char = '\t';
 
@@ -47,6 +48,38 @@ impl IpAddress {
         }
         found_good && !found_bad
     }
+
+    fn supports_ssl(&self) -> bool {
+        let mut layer: usize = 0;
+        let mut buffer: [char; 2] = [EMPTY; 2];
+
+        let mut found_super = HashSet::new();
+        let mut found_hyper = HashSet::new();
+
+        for c in self.address.chars() {
+            match c {
+                '[' => {
+                    layer += 1;
+                    buffer = [EMPTY; 2];
+                }
+                ']' => {
+                    layer -= 1;
+                    buffer = [EMPTY; 2];
+                }
+                _ => {
+                    if (layer == 0) && (c == buffer[0]) && (c != buffer[1]) {
+                        found_super.insert((buffer[0], buffer[1]));
+                    } else if (layer > 0) && (c == buffer[0]) && (c != buffer[1]) {
+                        found_hyper.insert((buffer[1], buffer[0]));
+                    }
+
+                    buffer[0] = buffer[1];
+                    buffer[1] = c;
+                }
+            }
+        }
+        found_hyper.intersection(&found_super).count() > 0
+    }
 }
 
 fn part_a(inputs: &Vec<String>) -> usize {
@@ -57,7 +90,16 @@ fn part_a(inputs: &Vec<String>) -> usize {
         .count()
 }
 
+fn part_b(inputs: &Vec<String>) -> usize {
+    inputs
+        .iter()
+        .map(|a| IpAddress { address: a.clone() })
+        .filter(|ip| ip.supports_ssl())
+        .count()
+}
+
 fn main() {
     let input = parse_lines();
     println!("A: {}", part_a(&input));
+    println!("B: {}", part_b(&input));
 }
