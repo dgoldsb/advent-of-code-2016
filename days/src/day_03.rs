@@ -70,10 +70,10 @@ fn part_b(inputs: &Vec<isize>) -> usize {
     shapes.iter().filter(|&s| s.is_triangle()).count()
 }
 
-fn main() {
-    let inputs = parse_lines();
+pub fn day_03() {
+    let inputs = parse_lines("day_03".to_string());
     println!("A: {}", part_a(&inputs));
 
-    let inputs = parse_ints();
+    let inputs = parse_ints("day_03".to_string());
     println!("B: {}", part_b(&inputs));
 }

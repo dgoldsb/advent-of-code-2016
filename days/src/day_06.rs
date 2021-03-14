@@ -26,8 +26,8 @@ fn solve(signals: &Vec<String>, part_a: &bool) -> String {
     return message.iter().collect();
 }
 
-fn main() {
-    let input = parse_lines();
+pub fn day_06() {
+    let input = parse_lines("day_06".to_string());
     println!("A: {}", solve(&input, &true));
     println!("B: {}", solve(&input, &false));
 }

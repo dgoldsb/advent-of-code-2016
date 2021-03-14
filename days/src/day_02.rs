@@ -194,8 +194,8 @@ fn part_b(inputs: &Vec<char>) -> String {
     return code;
 }
 
-fn main() {
-    let inputs = parse_chars();
+pub fn day_02() {
+    let inputs = parse_chars("day_02".to_string());
     println!("A: {}", part_a(&inputs));
     println!("B: {}", part_b(&inputs));
 }

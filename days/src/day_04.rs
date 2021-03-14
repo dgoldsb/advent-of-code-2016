@@ -100,8 +100,8 @@ fn part_b(inputs: &Vec<String>) -> u32 {
         .section
 }
 
-fn main() {
-    let inputs = parse_lines();
+pub fn day_04() {
+    let inputs = parse_lines("day_04".to_string());
     println!("A: {}", part_a(&inputs));
     println!("B: {}", part_b(&inputs));
 }

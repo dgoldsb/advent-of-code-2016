@@ -98,8 +98,8 @@ fn part_b(inputs: &Vec<String>) -> usize {
         .count()
 }
 
-fn main() {
-    let input = parse_lines();
+pub fn day_07() {
+    let input = parse_lines("day_07".to_string());
     println!("A: {}", part_a(&input));
     println!("B: {}", part_b(&input));
 }

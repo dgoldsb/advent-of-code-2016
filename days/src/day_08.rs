@@ -111,7 +111,7 @@ fn part_a(ops: &Vec<Operation>) -> usize {
     display.pixels.len()
 }
 
-fn main() {
-    let input = parse_lines().iter().map(|s| parse_op(s)).collect();
-    println!("A: {}", part_a(&input));
+pub fn day_08() {
+    let input = parse_lines("day_08".to_string()).iter().map(|s| parse_op(s)).collect();
+    println!("A/B: {}", part_a(&input));
 }

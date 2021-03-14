@@ -61,8 +61,8 @@ fn part_b(base: &String) -> String {
     return password.iter().collect();
 }
 
-fn main() {
-    let input = read_file();
+pub fn day_05() {
+    let input = read_file("day_05".to_string());
     println!("A: {}", part_a(&input));
     println!("B: {}", part_b(&input));
 }

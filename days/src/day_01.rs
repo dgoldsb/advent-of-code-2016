@@ -63,8 +63,8 @@ fn part_b(inputs: &Vec<String>) -> i32 {
     panic!("No solution for part B found...")
 }
 
-fn main() {
-    let inputs = parse_items(", ".to_string());
+pub fn day_01() {
+    let inputs = parse_items("day_01".to_string(), ", ".to_string());
     println!("A: {}", part_a(&inputs));
     println!("B: {}", part_b(&inputs));
 }
